@@ -369,8 +369,13 @@ function isPalindrome(str) {
  *   findLongestWord('A long and winding road') => 'winding'
  *   findLongestWord('No words here') => 'words'
  */
-function findLongestWord(/* sentence */) {
-  throw new Error('Not implemented');
+function findLongestWord(sentence) {
+  const words = sentence.split(' ');
+  const longest = words.reduce((longestWord, currentWord) => {
+    return currentWord.length > longestWord.length ? currentWord : longestWord;
+  }, '');
+
+  return longest;
 }
 
 /**
@@ -383,8 +388,11 @@ function findLongestWord(/* sentence */) {
  *   reverseWords('Hello World') => 'olleH dlroW'
  *   reverseWords('The Quick Brown Fox') => 'ehT kciuQ nworB xoF'
  */
-function reverseWords(/* str */) {
-  throw new Error('Not implemented');
+function reverseWords(str) {
+  const words = str.split(' ');
+  const reverseWord = words.map((word) => word.split('').reverse().join(''));
+
+  return reverseWord.join(' ');
 }
 
 /**
@@ -398,8 +406,15 @@ function reverseWords(/* str */) {
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase(/* str */) {
-  throw new Error('Not implemented');
+function invertCase(str) {
+  const symbols = str.split('');
+  const inverseSentense = symbols.map((symbol) => {
+    if (symbol === symbol.toLowerCase()) {
+      return symbol.toUpperCase();
+    }
+    return symbol.toLowerCase();
+  });
+  return inverseSentense.join('');
 }
 
 /**
@@ -415,8 +430,8 @@ function invertCase(/* str */) {
  *   getStringFromTemplate('John','Doe') => 'Hello, John Doe!'
  *   getStringFromTemplate('Chuck','Norris') => 'Hello, Chuck Norris!'
  */
-function getStringFromTemplate(/* firstName, lastName */) {
-  throw new Error('Not implemented');
+function getStringFromTemplate(firstName, lastName) {
+  return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -429,8 +444,8 @@ function getStringFromTemplate(/* firstName, lastName */) {
  *   extractNameFromTemplate('Hello, John Doe!') => 'John Doe'
  *   extractNameFromTemplate('Hello, Chuck Norris!') => 'Chuck Norris'
  */
-function extractNameFromTemplate(/* value */) {
-  throw new Error('Not implemented');
+function extractNameFromTemplate(value) {
+  return value.slice(7, -1);
 }
 
 /**
@@ -444,8 +459,8 @@ function extractNameFromTemplate(/* value */) {
  *   unbracketTag('<span>') => 'span'
  *   unbracketTag('<a>') => 'a'
  */
-function unbracketTag(/* str */) {
-  throw new Error('Not implemented');
+function unbracketTag(str) {
+  return str.slice(1, -1);
 }
 
 /**
@@ -463,8 +478,8 @@ function unbracketTag(/* str */) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+function extractEmails(str) {
+  return str.split(';');
 }
 
 /**
@@ -483,10 +498,21 @@ function extractEmails(/* str */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const lowerCaseAlphabet = 'abcdefghijklmnopqrstuvwxyz';
+  const upperCaseAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const symbols = str.split('');
+  const symbolsRot13 = symbols.map((symbol) => {
+    if (lowerCaseAlphabet.includes(symbol)) {
+      return lowerCaseAlphabet[(lowerCaseAlphabet.indexOf(symbol) + 13) % 26];
+    }
+    if (upperCaseAlphabet.includes(symbol)) {
+      return upperCaseAlphabet[(upperCaseAlphabet.indexOf(symbol) + 13) % 26];
+    }
+    return symbol;
+  });
+  return symbolsRot13.join('');
 }
-
 /**
  * Returns playid card id.
  *

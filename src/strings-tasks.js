@@ -56,8 +56,9 @@ function isString(value) {
  *   concatenateStrings('aa', '') => 'aa'.
  *   concatenateStrings('', 'bb') => 'bb'
  */
-function concatenateStrings(value1, value2) {
-  return value1.concat('', value2);
+function concatenateStrings(/*value1, value2*/) {
+  // return value1.concat('', value2);
+ throw new Error('Not implemented');
 }
 
 /**
